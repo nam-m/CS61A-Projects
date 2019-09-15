@@ -320,6 +320,13 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    max_rolls, max_score, i, num_rolls = 1, 0, 1, 10
+    while i <= num_rolls:
+        score = make_averaged(roll_dice, num_samples)(num_rolls, dice)
+        if max_score < score:
+            max_score, max_rolls = score, num_rolls
+        i += 1
+    return max_rolls
     # END PROBLEM 9
 
 
@@ -344,7 +351,7 @@ def average_win_rate(strategy, baseline=always_roll(4)):
 
 def run_experiments():
     """Run a series of strategy experiments and report results."""
-    if True:  # Change to False when done finding max_scoring_num_rolls
+    if False:  # Change to False when done finding max_scoring_num_rolls
         six_sided_max = max_scoring_num_rolls(six_sided)
         print('Max scoring num rolls for six-sided dice:', six_sided_max)
 
