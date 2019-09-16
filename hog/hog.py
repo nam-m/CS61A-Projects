@@ -351,14 +351,14 @@ def average_win_rate(strategy, baseline=always_roll(4)):
 
 def run_experiments():
     """Run a series of strategy experiments and report results."""
-    if False:  # Change to False when done finding max_scoring_num_rolls
+    if True:  # Change to False when done finding max_scoring_num_rolls
         six_sided_max = max_scoring_num_rolls(six_sided)
         print('Max scoring num rolls for six-sided dice:', six_sided_max)
 
     if False:  # Change to True to test always_roll(8)
         print('always_roll(6) win rate:', average_win_rate(always_roll(6)))
 
-    if False:  # Change to True to test bacon_strategy
+    if True:  # Change to True to test bacon_strategy
         print('bacon_strategy win rate:', average_win_rate(bacon_strategy))
 
     if False:  # Change to True to test swap_strategy
@@ -375,7 +375,7 @@ def bacon_strategy(score, opponent_score, margin=8, num_rolls=4):
     rolls NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 10
-    return 4  # Replace this statement
+    return 0 if free_bacon(opponent_score) >= margin else num_rolls
     # END PROBLEM 10
 
 
@@ -462,11 +462,11 @@ def run(*args):
 #     return total
 # s0, s1 = play(always_roll(1), always_roll(1), dice=make_test_dice(2, 3), goal=5, say=echo)
 
-f0 = announce_highest(1) # Only announce Player 1 score gains
-f1 = f0(12, 0)
-f2 = f1(12, 10)
+# f0 = announce_highest(1) # Only announce Player 1 score gains
+# f1 = f0(12, 0)
+# f2 = f1(12, 10)
 
 # The following function call checks if the behavior of f1 changes,
 # perhaps due to a side effect other than printing. The only side
 # effect of a commentary function should be to print.
-f2_again = f1(11, 9)
+# f2_again = f1(11, 9)
