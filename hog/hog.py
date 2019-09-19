@@ -358,10 +358,10 @@ def run_experiments():
     if False:  # Change to True to test always_roll(8)
         print('always_roll(6) win rate:', average_win_rate(always_roll(6)))
 
-    if True:  # Change to True to test bacon_strategy
+    if False:  # Change to True to test bacon_strategy
         print('bacon_strategy win rate:', average_win_rate(bacon_strategy))
 
-    if False:  # Change to True to test swap_strategy
+    if True:  # Change to True to test swap_strategy
         print('swap_strategy win rate:', average_win_rate(swap_strategy))
 
     if False:  # Change to True to test final_strategy
@@ -385,7 +385,10 @@ def swap_strategy(score, opponent_score, margin=8, num_rolls=4):
     non-beneficial swap. Otherwise, it rolls NUM_ROLLS.
     """
     # BEGIN PROBLEM 11
-    return 4  # Replace this statement
+    new_score = score + free_bacon(opponent_score)
+    if is_swap(new_score, opponent_score) == True:
+        return 0 if new_score < opponent_score else num_rolls
+    return bacon_strategy(score, opponent_score, margin, num_rolls)
     # END PROBLEM 11
 
 
@@ -395,7 +398,7 @@ def final_strategy(score, opponent_score):
     *** YOUR DESCRIPTION HERE ***
     """
     # BEGIN PROBLEM 12
-    return 4  # Replace this statement
+    
     # END PROBLEM 12
 
 
@@ -470,3 +473,5 @@ def run(*args):
 # perhaps due to a side effect other than printing. The only side
 # effect of a commentary function should be to print.
 # f2_again = f1(11, 9)
+
+# swap_strategy(30, 54, 7, 6)
