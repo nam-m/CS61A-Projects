@@ -67,8 +67,21 @@ def accuracy(typed, reference):
     reference_words = split(reference)
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    num_correct = 0
+    if len(typed_words) == 0 or len(reference_words) == 0:
+        return 0.0
+    elif len(typed_words) == 1:
+        return 100.0 if typed_words[0] == reference_words[0] else 0.0
+    else:
+        for k in range(len(typed_words)):
+            if typed_words[k] == reference_words[k]:
+                num_correct += 1
+            if k == len(reference_words) - 1:
+                break
+    return num_correct / len(typed_words) * 100
     # END PROBLEM 3
-
+    
+print(accuracy("a b c d", " a d "))
 
 def wpm(typed, elapsed):
     """Return the words-per-minute (WPM) of the TYPED string."""
