@@ -17,8 +17,9 @@ def choose(paragraphs, select, k):
     """
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
+    para_list = [p for p in paragraphs if select(p)]
+    return para_list[k] if k + 1 <= len(para_list) else ''
     # END PROBLEM 1
-
 
 def about(topic):
     """Return a select function that returns whether a paragraph contains one
@@ -33,8 +34,17 @@ def about(topic):
     assert all([lower(x) == x for x in topic]), 'topics should be lowercase.'
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    def select (paragraph):
+        para = remove_punctuation(paragraph)
+        para = lower(para)
+        para = split(para)
+        for t in topic:
+            for p in para:
+                if t == p:
+                    return True
+        return False
+    return select
     # END PROBLEM 2
-
 
 def accuracy(typed, reference):
     """Return the accuracy (percentage of words typed correctly) of TYPED
