@@ -80,14 +80,15 @@ def accuracy(typed, reference):
                 break
     return num_correct / len(typed_words) * 100
     # END PROBLEM 3
-    
-print(accuracy("a b c d", " a d "))
 
 def wpm(typed, elapsed):
     """Return the words-per-minute (WPM) of the TYPED string."""
     assert elapsed > 0, 'Elapsed time must be positive'
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    # words per minute is the ratio of the number of characters typed 
+    # divided by 5 (a typical word length) to the elapsed time in minutes
+    return (len(typed) / 5) * 60.0 / elapsed
     # END PROBLEM 4
 
 
