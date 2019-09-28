@@ -99,6 +99,17 @@ def autocorrect(user_word, valid_words, diff_function, limit):
     """
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    for v in valid_words:
+        if user_word == v:
+            return user_word
+    # Create dictionary with keys as iterables in valid_words list
+    # and values as difference between them and user_word
+    d = {v : diff_function(user_word, v, limit) for v in valid_words}
+    if min(d.values()) <= limit:
+        return min(d, key=d.get)
+    else:
+        return user_word
+    
     # END PROBLEM 5
 
 
