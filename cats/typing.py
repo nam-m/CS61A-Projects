@@ -86,7 +86,7 @@ def wpm(typed, elapsed):
     assert elapsed > 0, 'Elapsed time must be positive'
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
-    # words per minute is the ratio of the number of characters typed 
+    # words per minute is the ratio of the number of characters typed
     # divided by 5 (a typical word length) to the elapsed time in minutes
     return (len(typed) / 5) * 60.0 / elapsed
     # END PROBLEM 4
@@ -99,19 +99,13 @@ def autocorrect(user_word, valid_words, diff_function, limit):
     """
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
-    for v in valid_words:
-        if user_word == v:
-            return user_word
+    if user_word in valid_words:
+        return user_word
     # Create dictionary with keys as iterables in valid_words list
     # and values as difference between them and user_word
     d = {v : diff_function(user_word, v, limit) for v in valid_words}
-    if min(d.values()) <= limit:
-        return min(d, key=d.get)
-    else:
-        return user_word
-    
+    return min(d, key=d.get) if min(d.values()) <= limit else user_word
     # END PROBLEM 5
-
 
 def swap_diff(start, goal, limit):
     """A diff function for autocorrect that determines how many letters
@@ -119,8 +113,24 @@ def swap_diff(start, goal, limit):
     their lengths.
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    # assert False, 'Remove this line'
+    if start == goal:
+        return 0
+    if limit == 0:
+        return 1
+    if min(len(start), len(goal)) == 0:
+        return max(len(start), len(goal))
+    diff = start[0] != goal[0]
+    return diff + swap_diff(start[1:], goal[1:], limit-diff)
     # END PROBLEM 6
+
+# print(swap_diff("awful", "awesome", 3) > 3)
+# big_limit = 10
+# swap_diff("awe", "awesome", big_limit)
+# swap_diff("from", "form", big_limit)
+# limit = 4
+# print(swap_diff("roses", "arose", limit) > limit)
+# print(swap_diff("rosesabcdefghijklm", "arosenopqrstuvwxyz", limit) > limit)
 
 def edit_diff(start, goal, limit):
     """A diff function that computes the edit distance from START to GOAL."""
@@ -138,8 +148,8 @@ def edit_diff(start, goal, limit):
 
     else:
         add_diff = ...  # Fill in these lines
-        remove_diff = ... 
-        substitute_diff = ... 
+        remove_diff = ...
+        substitute_diff = ...
         # BEGIN
         "*** YOUR CODE HERE ***"
         # END
