@@ -1,5 +1,5 @@
 from utils import *
-# from typing import autocorrect, lines_from_file
+from typing import autocorrect, lines_from_file
 # print(remove_punctuation('A school, of fish'))
 # print(lower('A school, of fish'))
 # print(split('A school, of fish'))
@@ -12,17 +12,17 @@ from utils import *
 
 # diff_function = lambda w1, w2, limit: abs(len(w2) - len(w1))
 # user_word = "cul"
-# valid_words = ["culture", "cult", "cultivate"]
-# limit = 10 
-# d = {v : diff_function(user_word, v, limit) for v in valid_words}
+valid_words = ["culture", "cult", "cultivate"]
+limit = 10 
+d = {v : diff_function(user_word, v, limit) for v in valid_words}
 
-# print(d)
+print(d)
 
-# # Get key with min value
-# print(min(d, key=d.get))
+# Get key with min value
+print(min(d, key=d.get))
 
-# # Get min key
-# print(min(d.keys())
+# Get min key
+print(min(d.keys())
 
 # # Get min value
 # print(min(d.values()))

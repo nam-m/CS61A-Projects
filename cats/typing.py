@@ -35,9 +35,7 @@ def about(topic):
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
     def select (paragraph):
-        para = remove_punctuation(paragraph)
-        para = lower(para)
-        para = split(para)
+        para = remove_punctuation(paragraph).lower().split()
         for t in topic:
             for p in para:
                 if t == p:
@@ -74,10 +72,9 @@ def accuracy(typed, reference):
         return 100.0 if typed_words[0] == reference_words[0] else 0.0
     else:
         for k in range(len(typed_words)):
-            if typed_words[k] == reference_words[k]:
-                num_correct += 1
-            if k == len(reference_words) - 1:
-                break
+            while k <= len(reference_words) - 1:
+                if typed_words[k] == reference_words[k]:
+                    num_correct += 1
     return num_correct / len(typed_words) * 100
     # END PROBLEM 3
 
@@ -136,9 +133,10 @@ def edit_diff(start, goal, limit):
     """A diff function that computes the edit distance from START to GOAL."""
     assert False, 'Remove this line'
 
-    if ______________: # Fill in the condition
+    if start == goal: # Fill in the condition
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return 0
         # END
 
     elif ___________: # Feel free to remove or add additional cases
@@ -158,8 +156,6 @@ def edit_diff(start, goal, limit):
 def final_diff(start, goal, limit):
     """A diff function. If you implement this function, it will be used."""
     assert False, 'Remove this line to use your final_diff function'
-
-
 
 
 ###########
