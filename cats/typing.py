@@ -115,10 +115,13 @@ def swap_diff(start, goal, limit):
         return 0
     if limit == 0:
         return 1
+    # return (limit == 0) 
     if min(len(start), len(goal)) == 0:
         return max(len(start), len(goal))
-    diff = start[0] != goal[0]
+    diff = start[0] != goal[0] 
+    # diff = 1 if start and goal have identical initial letter, else 0
     return diff + swap_diff(start[1:], goal[1:], limit-diff)
+    # compare two reduced strings and decrease limit by diff
     # END PROBLEM 6
 
 # print(swap_diff("awful", "awesome", 3) > 3)
@@ -128,31 +131,25 @@ def swap_diff(start, goal, limit):
 # limit = 4
 # print(swap_diff("roses", "arose", limit) > limit)
 # print(swap_diff("rosesabcdefghijklm", "arosenopqrstuvwxyz", limit) > limit)
+# print(swap_diff("tesng", "testing", 10))
 
 def edit_diff(start, goal, limit):
     """A diff function that computes the edit distance from START to GOAL."""
-    assert False, 'Remove this line'
-
-    if start == goal: # Fill in the condition
-        # BEGIN
-        "*** YOUR CODE HERE ***"
+    # assert False, 'Remove this line'
+    if limit < 0:
+        return 1
+    elif start == goal: 
         return 0
-        # END
-
-    elif ___________: # Feel free to remove or add additional cases
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
-
+    elif min(len(start), len(goal)) == 0:
+        return max(len(start), len(goal))
     else:
-        add_diff = ...  # Fill in these lines
-        remove_diff = ...
-        substitute_diff = ...
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
-
-
+        diff = start[0] != goal[0]
+        add_diff = 1 + edit_diff(start, goal[1:], limit-1)
+        remove_diff = 1 + edit_diff(start[1:], goal, limit-1)
+        substitute_diff = diff + edit_diff(start[1:], goal[1:], limit-diff)
+    return min(add_diff, remove_diff, substitute_diff)
+    
+sum([edit_diff('hyper', 'yhbpexr', k) > k for k in range(7)])
 def final_diff(start, goal, limit):
     """A diff function. If you implement this function, it will be used."""
     assert False, 'Remove this line to use your final_diff function'

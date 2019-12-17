@@ -17,7 +17,6 @@ limit = 10
 d = {v : diff_function(user_word, v, limit) for v in valid_words}
 
 print(d)
-
 # Get key with min value
 print(min(d, key=d.get))
 
