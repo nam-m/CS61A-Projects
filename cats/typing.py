@@ -148,7 +148,7 @@ def edit_diff(start, goal, limit):
         remove_diff = 1 + edit_diff(start[1:], goal, limit-1)
         substitute_diff = diff + edit_diff(start[1:], goal[1:], limit-diff)
     return min(add_diff, remove_diff, substitute_diff)
-    
+
 sum([edit_diff('hyper', 'yhbpexr', k) > k for k in range(7)])
 def final_diff(start, goal, limit):
     """A diff function. If you implement this function, it will be used."""
@@ -159,13 +159,20 @@ def final_diff(start, goal, limit):
 # Phase 3 #
 ###########
 
-
 def report_progress(typed, prompt, id, send):
     """Send a report of your id and progress so far to the multiplayer server."""
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    num_correct = 0
+    for k in range(len(typed)):
+        if typed[k] == prompt[k]:
+            num_correct += 1
+        else:
+            break
+    progress = num_correct / len(prompt)
+    send({'id': id, 'progress': progress})
+    return progress
     # END PROBLEM 8
-
 
 def fastest_words_report(word_times):
     """Return a text description of the fastest words typed by each player."""
