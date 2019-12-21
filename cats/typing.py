@@ -154,7 +154,6 @@ def final_diff(start, goal, limit):
     """A diff function. If you implement this function, it will be used."""
     assert False, 'Remove this line to use your final_diff function'
 
-
 ###########
 # Phase 3 #
 ###########
@@ -183,20 +182,33 @@ def fastest_words_report(word_times):
         report += 'Player {} typed these fastest: {}\n'.format(i + 1, words)
     return report
 
-
 def fastest_words(word_times, margin=1e-5):
     """A list of which words each player typed fastest."""
-    n_players = len(word_times)
-    n_words = len(word_times[0]) - 1
+    n_players = len(word_times) # number of players
+    n_words = len(word_times[0]) - 1 # number of words
     assert all(len(times) == n_words + 1 for times in word_times)
     assert margin > 0
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    # Get total elapsed time of each word for each player
+    total_elapsed_time = []
+    for p in word_times:
+        total_elapsed_time.append([(elapsed_time(p[i]) - elapsed_time(p[i-1])) for i in range(1, len(p))])
+    # print(total_elapsed_time)
+
+    # Get word from word_times list for words with min elapsed time
+    min_time_words = []
+    for i in range(n_players):
+        min_time_words += [[]] # create empty lists corresponding to number of players
+    for p in range(n_players):
+        for i in range(0, n_words):
+            if total_elapsed_time[p][i] <= min([total_elapsed_time[j][i] for j in range(n_players)]) + margin:
+                min_time_words[p] += [word(word_times[p][i+1])]
+    return min_time_words
     # END PROBLEM 9
 
-
 def word_time(word, elapsed_time):
-    """A data abstrction for the elapsed time that a player finished a word."""
+    """A data abstraction for the elapsed time that a player finished a word."""
     return [word, elapsed_time]
 
 

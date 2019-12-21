@@ -9,18 +9,15 @@ test = {
           >>> p0 = [word_time('START', 0), word_time('What', 0.2), word_time('great', 0.4), word_time('luck', 0.8)]
           >>> p1 = [word_time('START', 0), word_time('What', 0.6), word_time('great', 0.8), word_time('luck', 1.19)]
           >>> fastest_words([p0, p1])
-          8e46fe768e646201a51b6caf0ae65fdb
-          # locked
+          [['What', 'great'], ['great', 'luck']]
           >>> fastest_words([p0, p1], 0.1)  # with a large margin, both typed "luck" the fastest
-          c8f4afb99c22926d63b4937678249c68
-          # locked
+          [['What', 'great', 'luck'], ['great', 'luck']]
           >>> p2 = [word_time('START', 0), word_time('What', 0.2), word_time('great', 0.3), word_time('luck', 0.6)]
           >>> fastest_words([p0, p1, p2])
-          26d9e18fe121bc000bf2abf00214a032
-          # locked
+          [['What'], [], ['What', 'great', 'luck']]
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
