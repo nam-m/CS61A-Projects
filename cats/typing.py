@@ -222,7 +222,7 @@ def elapsed_time(word_time):
     return word_time[1]
 
 
-enable_multiplayer = False  # Change to True when you
+enable_multiplayer = True  # Change to True when you are done
 
 
 ##########################
