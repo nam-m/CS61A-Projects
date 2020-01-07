@@ -1,0 +1,11 @@
+{
+    "restructuredtext.confPath": "",
+    "restructuredtext.linter.extraArgs": [
+        "--ignore D001",
+        // D001: Line too long
+        "--ignore D002",
+        // D002: Trailing whitespace
+        "--ignore D003" 
+        // D003: Tabulation used for indentation
+    ]
+}

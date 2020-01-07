@@ -4,10 +4,10 @@ Run your tests with "python3 ok -t --suite SUITE_NAME --case CASE_NAME -v"
 --------------------------------------------------------------------------------
 
 Suite 1
-
 	>>> from ants import *
-
-	Case Example
+	
+	Case 1
+	
 		>>> x = 5
 		>>> x
 		5
