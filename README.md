@@ -14,9 +14,9 @@ To spice up the game, we will play with some special rules:
 ## Project 2: CS 61A Autocorrected Typing Software (cats)
 A program that measures typing speed and features autocorrect
 ### Features
-- Calculate correctness words in typed paragraph compared to reference paragraph
+- Calculate correctness (%) of words in typed paragraph compared to reference paragraph
 - Calculate words per minute (wpm) and elapsed time
-- Autocorrect attempts to correct the spelling of a word after an user types it.
+- Autocorrect attempts to correct the spelling of a word after an user types it
 
 
 ## Project 3: Ants Vs.SomeBees (ants)
