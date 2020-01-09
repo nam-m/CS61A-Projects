@@ -26,7 +26,7 @@ class Place(object):
         # BEGIN Problem 2
         "*** YOUR CODE HERE ***"
         if type(exit) == Place: # if place has an exit
-        # if isinstance(exit,Place):
+        # if isinstance(exit, Place):
             exit.entrance = self
         # END Problem 2
 
@@ -204,7 +204,6 @@ class HarvesterAnt(Ant):
         colony.food += 1
         # END Problem 1
 
-
 class ThrowerAnt(Ant):
     """ThrowerAnt throws a leaf each turn at the nearest Bee in its range."""
 
@@ -221,7 +220,14 @@ class ThrowerAnt(Ant):
         This method returns None if there is no such Bee (or none in range).
         """
         # BEGIN Problem 3 and 4
-        return random_or_none(self.place.bees)
+        position = self.place # self_place mustn't be changed 
+        while position != beehive: # get column of dimension of colony
+            if position == beehive:
+                break
+            if position.bees:
+                return random_or_none(position.bees)
+            position = position.entrance
+        return None
         # END Problem 3 and 4
 
     def throw_at(self, target):
