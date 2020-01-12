@@ -275,7 +275,6 @@ class LongThrower(ThrowerAnt):
     # BEGIN Problem 4
     implemented = True   # Change to True to view in the GUI
     food_cost = 2
-    
     # END Problem 4
 
 class FireAnt(Ant):
@@ -284,8 +283,9 @@ class FireAnt(Ant):
     name = 'Fire'
     damage = 3
     # OVERRIDE CLASS ATTRIBUTES HERE
+    food_cost = 5
     # BEGIN Problem 5
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 5
 
     def __init__(self, armor=3):
@@ -301,6 +301,23 @@ class FireAnt(Ant):
         """
         # BEGIN Problem 5
         "*** YOUR CODE HERE ***"
+        self.armor -= amount
+        # Reflected damage when being taking 'amount' damage
+        if self.place.bees: 
+            for bee in self.place.bees[:]: 
+                # list slicing allows mutation in all elements when iterating over a list 
+                # in case elements are removed 
+                bee.reduce_armor(amount) # call 'reduce_armor' in class Insect
+        if self.armor <= 0:
+            # If it dies, it does an additional amount of damage
+            # , which is specified by its damage attribute
+            if self.place.bees: 
+                for bee in list(self.place.bees):
+                    # list func allows mutation in all elements when iterating over a list 
+                    # in case elements are removed 
+                    bee.reduce_armor(self.damage) # call 'reduce_armor' in class Insect
+            self.place.remove_insect(self)
+            self.death_callback()
         # END Problem 5
 
 class HungryAnt(Ant):
