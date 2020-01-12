@@ -326,23 +326,35 @@ class HungryAnt(Ant):
     """
     name = 'Hungry'
     # OVERRIDE CLASS ATTRIBUTES HERE
+    food_cost = 4
+    # number of turns it takes a HungryAnt to digest
+    time_to_digest = 3
     # BEGIN Problem 6
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 6
 
     def __init__(self, armor=1):
         # BEGIN Problem 6
         "*** YOUR CODE HERE ***"
+        Ant.__init__(self, armor)
+        # digesting counts the number of turns it has left to digest
+        self.digesting = 0 # default is 0, since it hasn't eaten anything at the beginning
         # END Problem 6
 
     def eat_bee(self, bee):
         # BEGIN Problem 6
         "*** YOUR CODE HERE ***"
+        bee.reduce_armor(bee.armor)
+        self.digesting = self.time_to_digest # reset timer
         # END Problem 6
 
     def action(self, colony):
         # BEGIN Problem 6
         "*** YOUR CODE HERE ***"
+        if self.digesting > 0:
+            self.digesting -= 1
+        elif self.place.bees and self.digesting == 0:
+            self.eat_bee(random_or_none(list(self.place.bees)))
         # END Problem 6
 
 class NinjaAnt(Ant):
