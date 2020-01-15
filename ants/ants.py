@@ -42,9 +42,22 @@ class Place(object):
         if insect.is_ant:
             if self.ant is None:
                 self.ant = insect
-            else:
+            else: # there is an Ant in Place
                 # BEGIN Problem 9
-                assert self.ant is None, 'Two ants in {0}'.format(self)
+                # Add a Container Ant to Place with a Non-Container Ant 
+                if not self.ant.is_container and insect.is_container:
+                    # insect.place = self
+                    # Set Place's Ant to be Container Insect
+                    insect.contain_ant(self.ant)
+                    self.ant = insect
+                # Add a Non-Container Ant to Place with a Container Ant that does not contain any ant
+                elif self.ant.is_container and self.ant.contained_ant is None and not insect.is_container:
+                    # insect.place = self
+                    self.ant.contain_ant(insect)
+                    # Set new Insect to be Container Ant
+                    # insect = self.ant
+                else:
+                    assert self.ant is None, 'Two ants in {0}'.format(self)
                 # END Problem 9
         else:
             self.bees.append(insect)
@@ -178,6 +191,7 @@ class Ant(Insect):
     food_cost = 0
     # ADD CLASS ATTRIBUTES HERE
     blocks_path = True # block Bees' path
+    is_container = False
 
     def __init__(self, armor=1):
         """Create an Ant with an ARMOR quantity."""
@@ -394,6 +408,8 @@ class BodyguardAnt(Ant):
 
     name = 'Bodyguard'
     # OVERRIDE CLASS ATTRIBUTES HERE
+    food_cost = 4
+    is_container = True 
     # BEGIN Problem 9
     implemented = False   # Change to True to view in the GUI
     # END Problem 9
@@ -405,16 +421,22 @@ class BodyguardAnt(Ant):
     def can_contain(self, other):
         # BEGIN Problem 9
         "*** YOUR CODE HERE ***"
+        return other.is_container is False and self.contained_ant is None
         # END Problem 9
 
     def contain_ant(self, ant):
         # BEGIN Problem 9
         "*** YOUR CODE HERE ***"
+        if self.can_contain(ant):
+            self.contained_ant = ant   
         # END Problem 9
 
     def action(self, colony):
         # BEGIN Problem 9
         "*** YOUR CODE HERE ***"
+        # Perform action of contained ant
+        if self.contained_ant is not None:
+            self.contained_ant.action(colony)
         # END Problem 9
 
 class TankAnt(BodyguardAnt):
