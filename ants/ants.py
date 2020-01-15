@@ -44,18 +44,14 @@ class Place(object):
                 self.ant = insect
             else: # there is an Ant in Place
                 # BEGIN Problem 9
+                # Add a Non-Container Ant to Place with a Container Ant that does not contain any ant
+                if self.ant.is_container and not self.ant.contained_ant and not insect.is_container:
+                    self.ant.contain_ant(insect)
                 # Add a Container Ant to Place with a Non-Container Ant 
-                if not self.ant.is_container and insect.is_container:
-                    # insect.place = self
+                elif not self.ant.is_container and insect.is_container:
                     # Set Place's Ant to be Container Insect
                     insect.contain_ant(self.ant)
                     self.ant = insect
-                # Add a Non-Container Ant to Place with a Container Ant that does not contain any ant
-                elif self.ant.is_container and self.ant.contained_ant is None and not insect.is_container:
-                    # insect.place = self
-                    self.ant.contain_ant(insect)
-                    # Set new Insect to be Container Ant
-                    # insect = self.ant
                 else:
                     assert self.ant is None, 'Two ants in {0}'.format(self)
                 # END Problem 9
@@ -411,7 +407,7 @@ class BodyguardAnt(Ant):
     food_cost = 4
     is_container = True 
     # BEGIN Problem 9
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 9
 
     def __init__(self, armor=2):
@@ -435,7 +431,7 @@ class BodyguardAnt(Ant):
         # BEGIN Problem 9
         "*** YOUR CODE HERE ***"
         # Perform action of contained ant
-        if self.contained_ant is not None:
+        if self.contained_ant:
             self.contained_ant.action(colony)
         # END Problem 9
 
@@ -445,13 +441,20 @@ class TankAnt(BodyguardAnt):
     name = 'Tank'
     damage = 1
     # OVERRIDE CLASS ATTRIBUTES HERE
+    food_cost = 6
+    # is_container = True
     # BEGIN Problem 10
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 10
 
     def action(self, colony):
         # BEGIN Problem 10
         "*** YOUR CODE HERE ***"
+        if self.place.bees:
+            for bee in list(self.place.bees):
+                bee.reduce_armor(self.damage)
+        if self.contained_ant:
+            self.contained_ant.action(colony)
         # END Problem 10
 
 class Water(Place):
