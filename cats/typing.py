@@ -149,7 +149,6 @@ def edit_diff(start, goal, limit):
         substitute_diff = diff + edit_diff(start[1:], goal[1:], limit-diff)
     return min(add_diff, remove_diff, substitute_diff)
 
-sum([edit_diff('hyper', 'yhbpexr', k) > k for k in range(7)])
 def final_diff(start, goal, limit):
     """A diff function. If you implement this function, it will be used."""
     assert False, 'Remove this line to use your final_diff function'
