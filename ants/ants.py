@@ -73,6 +73,8 @@ class Place(object):
             # Special handling for QueenAnt
             # BEGIN Problem 13
             "*** YOUR CODE HERE ***"
+            if insect.name is 'Queen':
+                pass
             # END Problem 13
 
             # Special handling for container ants
@@ -479,23 +481,28 @@ class ScubaThrower(ThrowerAnt):
     food_cost = 6
     is_watersafe = True
     implemented = True
-
 # END Problem 12
 
 # BEGIN Problem 13
-class QueenAnt(Ant):  # You should change this line
+class QueenAnt(ScubaThrower):  # You should change this line
 # END Problem 13
     """The Queen of the colony. The game is over if a bee enters her place."""
 
     name = 'Queen'
     # OVERRIDE CLASS ATTRIBUTES HERE
+    food_cost = 7
+    is_real = True
     # BEGIN Problem 13
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 13
 
     def __init__(self, armor=1):
         # BEGIN Problem 13
         "*** YOUR CODE HERE ***"
+        Ant.__init__(self,armor)
+        # Search Place for existed QueenAnt(s)
+        if
+            self.is_real = False
         # END Problem 13
 
     def action(self, colony):
@@ -506,6 +513,12 @@ class QueenAnt(Ant):  # You should change this line
         """
         # BEGIN Problem 13
         "*** YOUR CODE HERE ***"
+        ThrowerAnt.action(self, colony)
+        # Search for ants behind
+
+        # Kill imposter queen ants
+        if not is_real:
+            self.reduce_armor(self.armor)
         # END Problem 13
 
     def reduce_armor(self, amount):
@@ -514,6 +527,9 @@ class QueenAnt(Ant):  # You should change this line
         """
         # BEGIN Problem 13
         "*** YOUR CODE HERE ***"
+        self.armor -= amount
+        if self.armor == 0:
+            return bees_win()
         # END Problem 13
 
 class AntRemover(Ant):
