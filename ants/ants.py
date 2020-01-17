@@ -501,7 +501,9 @@ class QueenAnt(ScubaThrower):  # You should change this line
         "*** YOUR CODE HERE ***"
         Ant.__init__(self,armor)
         # Search Place for existed QueenAnt(s)
-        if
+        while self.place.exit != None:
+            if self.place.exit is None:
+                break
             self.is_real = False
         # END Problem 13
 
@@ -517,7 +519,7 @@ class QueenAnt(ScubaThrower):  # You should change this line
         # Search for ants behind
 
         # Kill imposter queen ants
-        if not is_real:
+        if not self.is_real:
             self.reduce_armor(self.armor)
         # END Problem 13
 
