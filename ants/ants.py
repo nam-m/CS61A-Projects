@@ -526,8 +526,12 @@ class QueenAnt(ScubaThrower):  # You should change this line
                 if position.exit is None: # exit of Place at the end of tunnel
                     turn += 1
                     break
-                if position.ant and turn % 2 == 0:
-                    position.ant.damage *= 2
+                if turn % 2 == 0:
+                    if position.exit.ant and position.exit.ant.is_container:
+                        if position.exit.ant.contained_ant:
+                            position.exit.ant.contained_ant.damage *= 2
+                    elif position.exit.ant:
+                        position.exit.ant.damage *= 2
                 position = position.exit
         # END Problem 13
 
@@ -538,7 +542,8 @@ class QueenAnt(ScubaThrower):  # You should change this line
         # BEGIN Problem 13
         "*** YOUR CODE HERE ***"
         Insect.reduce_armor(self, amount)
-        return bees_win()
+        if self.is_real and self.armor <= 0:
+            return bees_win()
         # END Problem 13
 
 class AntRemover(Ant):
