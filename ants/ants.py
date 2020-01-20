@@ -107,6 +107,7 @@ class Insect(object):
     damage = 0
     # ADD CLASS ATTRIBUTES HERE
     is_watersafe = False # die in Water
+    doubled = False # is the ant's damage doubled?
 
     def __init__(self, armor, place=None):
         """Create an Insect with an ARMOR amount and a starting PLACE."""
@@ -127,6 +128,12 @@ class Insect(object):
             self.place.remove_insect(self)
             self.death_callback()
 
+    # Check if ant's damage has been doubled by QueenAnt
+    def double_damage(self):
+        if not self.doubled:
+            self.damage *= 2
+        self.doubled = True
+    
     def action(self, colony):
         """The action performed each turn.
 
@@ -519,19 +526,19 @@ class QueenAnt(ScubaThrower):  # You should change this line
             self.reduce_armor(self.armor)
         else:
             ThrowerAnt.action(self, colony)
-            # Search for ants behind
-            turn = 0
+            # Search for ants position.exit
             position = self.place
             while position.exit != None:
-                if position.exit is None: # exit of Place at the end of tunnel
-                    turn += 1
+                if not position.exit: # exit of Place at the end of tunnel
                     break
-                if turn % 2 == 0:
-                    if position.exit.ant and position.exit.ant.is_container:
-                        if position.exit.ant.contained_ant:
-                            position.exit.ant.contained_ant.damage *= 2
-                    elif position.exit.ant:
-                        position.exit.ant.damage *= 2
+                # Double damage of non-container ants behind QueenAnt
+                if position.exit.ant:
+                    position.exit.ant.double_damage()
+                # Double damage of container ants behind QueenAnt
+                if position.exit.ant and position.exit.ant.is_container:
+                    if position.exit.ant.contained_ant:
+                        position.exit.ant.contained_ant.double_damage()
+                # Move to next position behind
                 position = position.exit
         # END Problem 13
 
