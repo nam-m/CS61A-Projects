@@ -23,7 +23,3 @@ Class | Food Cost | Armor | Action
 
 
 ### To be updated...
-
-
-
-
