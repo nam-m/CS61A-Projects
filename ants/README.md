@@ -9,7 +9,7 @@ Class | Food Cost | Armor | Action
 -|-|-|-
 ![](https://github.com/nam-m/CS61A-Projects/blob/master/ants/assets/insects/bee-resized.gif) <br> Bee |  | 1 | Deals 1 damage to Ant in its place
 ![](https://github.com/nam-m/CS61A-Projects/blob/master/ants/assets/insects/ant_harvester.gif?raw=true) <br> Harvester Ant | 2 | 1 | Adds 1 food to colony
-![](https://github.com/nam-m/CS61A-Projects/blob/master/ants/assets/insects/ant_thrower.gif?raw=true) <br> Thrower Ant | 3 | 1 | Attacks nearest Bee ahead
+![](https://github.com/nam-m/CS61A-Projects/blob/master/ants/assets/insects/ant_thrower-resized.gif) <br> Thrower Ant | 3 | 1 | Attacks nearest Bee ahead
 ![](https://github.com/nam-m/CS61A-Projects/blob/master/ants/assets/insects/ant_shortthrower-resized.gif) <br> Short Thrower | 2 | 1 | Attacks Bee at most 3 places ahead
 ![](https://github.com/nam-m/CS61A-Projects/blob/master/ants/assets/insects/ant_longthrower-resized.gif) <br> Long Thrower | 2 | 1 | Attacks Bee at least 5 places ahead
 ![](https://github.com/nam-m/CS61A-Projects/blob/master/ants/assets/insects/ant_fire.gif?raw=true) <br> Fire Ant | 5 | 3 | Reflect Bee's damage <br> Damages all Bees in its place when killed
