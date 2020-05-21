@@ -23,8 +23,3 @@ A program that measures typing speed and features autocorrect
 A [tower defense](https://en.wikipedia.org/wiki/Tower_defense) game called Ants Vs. SomeBees. As the ant queen, you populate your colony with the bravest ants you can muster. Your ants must protect their queen from the evil bees that invade your territory. Irritate the bees enough by throwing leaves at them, and they will be vanquished. Fail to pester the airborne intruders adequately, and your queen will succumb to the bees' wrath. This game is inspired by PopCap Games' [Plants Vs. Zombies](https://en.wikipedia.org/wiki/Tower_defense)
 
 More details can be found in [ants](https://github.com/nam-m/CS61A-Projects/tree/master/ants) folder
-
-
-## Project 4: Scheme Interpreter
-
-In progress..
